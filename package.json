@@ -2,7 +2,7 @@
   "name": "penne",
   "version": "0.1.0",
   "description": "Diagram tool using D3 providing a set of common functions for easy integration and extensibility.",
-  "main": "module/penne.js",
+  "main": "components/penne.js",
   "scripts": {
     "test": "npm run test"
   },

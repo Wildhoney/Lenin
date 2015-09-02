@@ -1,0 +1,38 @@
+/**
+ * @method assert
+ * @throw {Error}
+ * @param {Boolean} validator
+ * @param {String} message
+ * @return {void}
+ */
+export function assert(validator, message) {
+    !validator && exception(message);
+}
+
+/**
+ * @method exception
+ * @throw {Error}
+ * @param {String} message
+ * @return {void}
+ */
+export function exception(message) {
+    throw new Error(`Penne: ${message}.`);
+}
+
+/**
+ * @method isShape
+ * @param {*} item
+ * @return {Boolean}
+ */
+export function isShape(item) {
+    return item;
+}
+
+/**
+ * @method isHTMLElement
+ * @param {*} item
+ * @return {Boolean}
+ */
+export function isHTMLElement(item) {
+    return item instanceof HTMLElement;
+}
