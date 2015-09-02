@@ -12,11 +12,11 @@ export default class Renderer {
     /**
      * @constructor
      * @param {HTMLElement} domElement
-     * @param {Object} options
+     * @param {Object} [options={}]
      * @return {Renderer}
      */
-    constructor(domElement, options) {
-        assert(isHTMLElement(shape), messages.ELEMENT_EXPECTED);
+    constructor(domElement, options = {}) {
+        assert(isHTMLElement(domElement), messages.ELEMENT_EXPECTED);
         this.domElement = domElement;
         this.options    = options;
     }

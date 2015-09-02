@@ -2,7 +2,7 @@
   "name": "penne",
   "version": "0.1.0",
   "description": "Diagram tool using D3 providing a set of common functions for easy integration and extensibility.",
-  "main": "components/penne.js",
+  "main": "src/penne.js",
   "scripts": {
     "test": "npm run test"
   },
@@ -27,6 +27,21 @@
   },
   "homepage": "https://github.com/Wildhoney/Penne#readme",
   "dependencies": {
+    "d3": "^3.5.6",
     "eventemitter2": "^0.4.14"
+  },
+  "devDependencies": {
+    "babelify": "^6.3.0",
+    "browserify": "^11.0.1",
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-karma": "0.0.4",
+    "jasmine-core": "^2.3.4",
+    "js-yaml": "^3.4.0",
+    "karma": "^0.12.37",
+    "karma-browserify": "^4.3.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.6",
+    "karma-spec-reporter": "0.0.20"
   }
 }

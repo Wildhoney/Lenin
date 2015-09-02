@@ -1,15 +1,4 @@
 /**
- * @method assert
- * @throw {Error}
- * @param {Boolean} validator
- * @param {String} message
- * @return {void}
- */
-export function assert(validator, message) {
-    !validator && exception(message);
-}
-
-/**
  * @method exception
  * @throw {Error}
  * @param {String} message
@@ -35,4 +24,15 @@ export function isShape(item) {
  */
 export function isHTMLElement(item) {
     return item instanceof HTMLElement;
+}
+
+/**
+ * @method assert
+ * @throw {Error}
+ * @param {Boolean} validator
+ * @param {String} message
+ * @return {void}
+ */
+export function assert(validator, message) {
+    !validator && exception(message);
 }
