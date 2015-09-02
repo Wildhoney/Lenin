@@ -17,6 +17,15 @@ export function moveHorizontal(value) {
 }
 
 /**
+ * @method moveVertical
+ * @param {Number} value
+ * @return {Function}
+ */
+export function moveVertical(value) {
+    return shape => shape.setAttribute('x', value);
+}
+
+/**
  * @method parseAttributes
  * @param {Object} attributes
  * @return {Object}

@@ -1,4 +1,4 @@
-import {compose, moveHorizontal, parseAttributes} from './../helpers/functions';
+import * as f from './../helpers/functions';
 
 /**
  * @property defaults
@@ -26,7 +26,7 @@ export default class Shape {
      * @return {Shape}
      */
     constructor(attributes = defaults) {
-        this.attributes = parseAttributes(Object.assign(defaults, attributes));
+        this.attributes = f.parseAttributes(Object.assign(defaults, attributes));
     }
 
     /**
@@ -35,7 +35,16 @@ export default class Shape {
      * @return {void}
      */
     moveHorizontal(value) {
-        compose(moveHorizontal(value))(this);
+        f.compose(f.moveHorizontal(value))(this);
+    }
+
+    /**
+     * @method moveVertical
+     * @param {Number} value
+     * @return {void}
+     */
+    moveVertical(value) {
+        f.compose(f.moveVertical(value))(this);
     }
 
     /**
@@ -55,7 +64,7 @@ export default class Shape {
     setAttribute(property, value) {
         const attributes     = { ...this.attributes };
         attributes[property] = value;
-        this.attributes      = parseAttributes(attributes);
+        this.attributes      = f.parseAttributes(attributes);
     }
 
 }

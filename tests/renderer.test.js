@@ -20,6 +20,9 @@ describe('Renderer', () => {
         rectangle.moveHorizontal(85);
         expect(rectangle.getAttribute('transform')).toEqual('translate(0, 85)');
 
+        rectangle.moveVertical(200);
+        expect(rectangle.getAttribute('transform')).toEqual('translate(200, 85)');
+
     });
 
 });
