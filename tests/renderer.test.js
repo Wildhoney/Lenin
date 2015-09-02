@@ -15,8 +15,10 @@ describe('Renderer', () => {
     it('Should be able to move shape around without being in the DOM;', () => {
 
         const rectangle = new Rectangle({ y: 100 });
-        rectangle.moveHorizontal(15);
-        expect(rectangle.getAttributes().transform).toEqual('translate(85, 0)');
+        expect(rectangle.getAttribute('transform')).toEqual('translate(0, 100)');
+
+        rectangle.moveHorizontal(85);
+        expect(rectangle.getAttribute('transform')).toEqual('translate(0, 85)');
 
     });
 
