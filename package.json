@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/Wildhoney/Penne/issues"
   },
-  "homepage": "https://github.com/Wildhoney/Penne#readme"
+  "homepage": "https://github.com/Wildhoney/Penne#readme",
+  "dependencies": {
+    "eventemitter2": "^0.4.14"
+  }
 }
