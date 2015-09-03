@@ -1,4 +1,4 @@
-import {shapes, byElement} from './shapes';
+import {store} from './store';
 import {assert, isShape, isHTMLElement} from './helpers/utilities';
 import * as messages from './helpers/messages';
 
@@ -17,8 +17,8 @@ export default class Renderer {
      */
     constructor(domElement, options = {}) {
         assert(isHTMLElement(domElement), messages.ELEMENT_EXPECTED);
-        this.domElement = domElement;
-        this.options    = options;
+        store.set(this, { domElement, shapes: [] });
+        this.options = options;
     }
 
     /**
@@ -28,7 +28,7 @@ export default class Renderer {
      */
     add(shape) {
         assert(isShape(shape), messages.SHAPE_EXPECTED);
-        shapes.push(shape);
+        store.get(this).shapes.push(shape);
         return shape;
     }
 
@@ -39,7 +39,8 @@ export default class Renderer {
      */
     remove(shape) {
         assert(isShape(shape), messages.SHAPE_EXPECTED);
-        const index = shapes.indexOf(shape);
+        const shapes = store.get(this).shapes;
+        const index  = shapes.indexOf(shape);
         ~index && shapes.splice(index, 1);
         return shape;
     }
@@ -49,7 +50,8 @@ export default class Renderer {
      * @return {void}
      */
     clear() {
-        byElement(this.domElement).map(shape => this.remove(shape));
+        const shapes = store.get(this).shapes;
+        shapes.map(shape => this.remove(shape));
     }
 
 }
