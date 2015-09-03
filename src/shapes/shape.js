@@ -52,7 +52,10 @@ export default class Shape {
      * @return {*}
      */
     getAttribute(property) {
-        return this.attributes[property];
+        const attributes = { ...this.attributes };
+        delete attributes.y;
+        delete attributes.x;
+        return attributes[property];
     }
 
     /**
