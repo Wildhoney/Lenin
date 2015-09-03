@@ -8,20 +8,20 @@ export function compose(...fns) {
 }
 
 /**
- * @method moveHorizontal
+ * @method setX
  * @param {Number} value
  * @return {Function}
  */
-export function moveHorizontal(value) {
+export function setX(value) {
     return shape => shape.setAttribute('y', value);
 }
 
 /**
- * @method moveVertical
+ * @method setY
  * @param {Number} value
  * @return {Function}
  */
-export function moveVertical(value) {
+export function setY(value) {
     return shape => shape.setAttribute('x', value);
 }
 
@@ -36,9 +36,6 @@ export function parseAttributes(attributes) {
 
     const x = attributes.x;
     const y = attributes.y;
-
-    //delete attributes.x;
-    //delete attributes.y;
 
     return { transform: `translate(${x}, ${y})`, ...attributes };
 

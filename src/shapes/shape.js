@@ -30,21 +30,21 @@ export default class Shape {
     }
 
     /**
-     * @method moveHorizontal
+     * @method setX
      * @param {Number} value
      * @return {void}
      */
-    moveHorizontal(value) {
-        f.compose(f.moveHorizontal(value))(this);
+    setX(value) {
+        f.compose(f.setX(value))(this);
     }
 
     /**
-     * @method moveVertical
+     * @method setY
      * @param {Number} value
      * @return {void}
      */
-    moveVertical(value) {
-        f.compose(f.moveVertical(value))(this);
+    setY(value) {
+        f.compose(f.setY(value))(this);
     }
 
     /**

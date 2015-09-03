@@ -37,10 +37,10 @@ describe('Renderer', () => {
         const rectangle = new Rectangle({ y: 100 });
         expect(rectangle.getAttribute('transform')).toEqual('translate(0, 100)');
 
-        rectangle.moveHorizontal(85);
+        rectangle.setX(85);
         expect(rectangle.getAttribute('transform')).toEqual('translate(0, 85)');
 
-        rectangle.moveVertical(200);
+        rectangle.setY(200);
         expect(rectangle.getAttribute('transform')).toEqual('translate(200, 85)');
 
     });
