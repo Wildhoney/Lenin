@@ -9,4 +9,10 @@ import Shape from './shape';
  */
 export default class Rectangle extends Shape {
 
+    /**
+     * @property tagName
+     * @type {String}
+     */
+    //static tagName = 'rect';
+
 }

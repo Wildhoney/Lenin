@@ -1,6 +1,19 @@
+import d3 from 'd3';
 import {store} from './store';
 import {assert, isShape, isHTMLElement} from './helpers/utilities';
 import * as messages from './helpers/messages';
+
+/**
+ * @constant ELEMENT
+ * @type {Symbol}
+ */
+const ELEMENT = Symbol('element');
+
+/**
+ * @constant OPTIONS
+ * @type {Symbol}
+ */
+const OPTIONS = Symbol('options');
 
 /**
  * @module Penne
@@ -17,8 +30,9 @@ export default class Renderer {
      */
     constructor(domElement, options = {}) {
         assert(isHTMLElement(domElement), messages.ELEMENT_EXPECTED);
-        store.set(this, { domElement, shapes: [] });
-        this.options = options;
+        this[ELEMENT] = d3.select(domElement);
+        this[OPTIONS] = options;
+        store.set(this, []);
     }
 
     /**
@@ -28,7 +42,7 @@ export default class Renderer {
      */
     add(shape) {
         assert(isShape(shape), messages.SHAPE_EXPECTED);
-        store.get(this).shapes.push(shape);
+        store.get(this).push(shape);
         return shape;
     }
 
@@ -39,9 +53,8 @@ export default class Renderer {
      */
     remove(shape) {
         assert(isShape(shape), messages.SHAPE_EXPECTED);
-        const shapes = store.get(this).shapes;
-        const index  = shapes.indexOf(shape);
-        ~index && shapes.splice(index, 1);
+        const index  = store.get(this).indexOf(shape);
+        ~index && store.get(this).splice(index, 1);
         return shape;
     }
 
@@ -50,8 +63,7 @@ export default class Renderer {
      * @return {void}
      */
     clear() {
-        const shapes = store.get(this).shapes;
-        shapes.map(shape => this.remove(shape));
+        store.get(this).map(shape => this.remove(shape));
     }
 
 }

@@ -1,6 +1,12 @@
 import * as f from './../helpers/functions';
 
 /**
+ * @constant ELEMENT
+ * @type {Symbol}
+ */
+const ELEMENT = Symbol('element');
+
+/**
  * @property defaults
  * @type {Object}
  */
@@ -10,6 +16,7 @@ const defaults = {
     width: 100,
     height: 100
 };
+
 
 /**
  * @module Penne
