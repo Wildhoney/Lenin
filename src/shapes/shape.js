@@ -7,16 +7,10 @@ import * as f from './../helpers/functions';
 const ELEMENT = Symbol('element');
 
 /**
- * @property defaults
+ * @property DEFAULTS
  * @type {Object}
  */
-const defaults = {
-    x: 0,
-    y: 0,
-    width: 100,
-    height: 100
-};
-
+const DEFAULTS = { x: 0, y: 0, width: 100, height: 100 };
 
 /**
  * @module Penne
@@ -29,52 +23,31 @@ export default class Shape {
 
     /**
      * @constructor
-     * @param {Object} [attributes=defaults]
+     * @param {Object} [attributes={ ...DEFAULTS }]
      * @return {Shape}
      */
-    //constructor(attributes = defaults) {
-    //    this.attributes = f.parseAttributes(Object.assign(defaults, attributes));
-    //}
-    //
-    ///**
-    // * @method setX
-    // * @param {Number} value
-    // * @return {void}
-    // */
-    //setX(value) {
-    //    f.compose(f.setX(value))(this);
-    //}
-    //
-    ///**
-    // * @method setY
-    // * @param {Number} value
-    // * @return {void}
-    // */
-    //setY(value) {
-    //    f.compose(f.setY(value))(this);
-    //}
-    //
-    ///**
-    // * @method getAttribute
-    // * @return {*}
-    // */
-    //getAttribute(property) {
-    //    const attributes = { ...this.attributes };
-    //    delete attributes.y;
-    //    delete attributes.x;
-    //    return attributes[property];
-    //}
-    //
-    ///**
-    // * @method setAttribute
-    // * @param {String} property
-    // * @param {*} value
-    // * @return {void}
-    // */
-    //setAttribute(property, value) {
-    //    const attributes     = { ...this.attributes };
-    //    attributes[property] = value;
-    //    this.attributes      = f.parseAttributes(attributes);
-    //}
+    constructor(attributes = { ...DEFAULTS }) {
+
+    }
+
+    /**
+     * @method dimensions
+     * @param {Number} height
+     * @param {Number} width
+     * @return {Number|null}
+     */
+    dimension({ height, width }) {
+
+    }
+
+    /**
+     * @method position
+     * @param {Number} top
+     * @param {Number} left
+     * @return {Number|null}
+     */
+    position({ top, left }) {
+
+    }
 
 }

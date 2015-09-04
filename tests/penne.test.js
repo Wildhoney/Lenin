@@ -15,7 +15,7 @@ beforeEach(() => {
 
 });
 
-describe('Renderer', () => {
+describe('Penne', () => {
 
     it('Should be able to create a shape;', () => {
 
@@ -32,8 +32,9 @@ describe('Renderer', () => {
         const secondElement = secondGroup.querySelector('rect');
 
         expect(firstRectangle[GROUP].node()).toEqual(firstGroup);
-        expect(secondRectangle[GROUP].node()).toEqual(secondGroup);
         expect(firstRectangle[ELEMENT].node()).toEqual(firstElement);
+
+        expect(secondRectangle[GROUP].node()).toEqual(secondGroup);
         expect(secondRectangle[ELEMENT].node()).toEqual(secondElement);
 
     });
