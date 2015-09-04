@@ -1,3 +1,5 @@
+import Rectangle from '../shapes/rectangle';
+
 /**
  * @method attach
  * @param {HTMLElement} canvas
@@ -12,7 +14,7 @@ export function attach(canvas) {
      */
     return shape => {
         const group   = canvas.append('g');
-        const element = group.append('rect');
+        const element = group.append(Rectangle.tagName);
         return { group: group.node(), element: element.node() };
     };
 
@@ -20,10 +22,9 @@ export function attach(canvas) {
 
 /**
  * @method detach
- * @param {HTMLElement} canvas
  * @return {Function}
  */
-export function detach(canvas) {
+export function detach() {
 
     /**
      * @method anonymous

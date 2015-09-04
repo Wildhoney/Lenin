@@ -57,7 +57,7 @@ export default class Penne {
      */
     destroy(...shapes) {
 
-        const detach = canvas.detach(this[ELEMENT]);
+        const detach = canvas.detach();
 
         shapes.map(shape => {
 
