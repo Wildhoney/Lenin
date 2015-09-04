@@ -32,7 +32,7 @@ export default class Penne {
      */
     create(...shapes) {
 
-        const place = canvas.place(this[ELEMENT]);
+        const attach = canvas.attach(this[ELEMENT]);
 
         return shapes.map(shape => {
 
@@ -40,7 +40,7 @@ export default class Penne {
 
             store.get(this).push(shape);
 
-            const { group, element } = place(shape);
+            const { group, element } = attach(shape);
             shape.setGroup(group);
             shape.setElement(element);
 
@@ -57,6 +57,8 @@ export default class Penne {
      */
     destroy(...shapes) {
 
+        const detach = canvas.detach(this[ELEMENT]);
+
         shapes.map(shape => {
 
             assert(isShape(shape), messages.SHAPE_EXPECTED);
@@ -64,6 +66,7 @@ export default class Penne {
             const index = store.get(this).indexOf(shape);
             ~index && store.get(this).splice(index, 1);
 
+            detach(shape);
             shape.removeGroup();
             shape.removeElement();
 
