@@ -2,31 +2,21 @@ import d3 from 'd3';
 import {store} from './store';
 import {assert, isShape, isHTMLElement} from './helpers/utilities';
 import * as messages from './helpers/messages';
-
-/**
- * @constant ELEMENT
- * @type {Symbol}
- */
-const ELEMENT = Symbol('element');
-
-/**
- * @constant OPTIONS
- * @type {Symbol}
- */
-const OPTIONS = Symbol('options');
+import * as canvas from './helpers/canvas';
+import {ELEMENT, GROUP, OPTIONS} from './helpers/symbols';
 
 /**
  * @module Penne
  * @author Adam Timberlake
  * @link https://github.com/Wildhoney/Penne
  */
-export default class Renderer {
+export default class Penne {
 
     /**
      * @constructor
      * @param {HTMLElement} domElement
      * @param {Object} [options={}]
-     * @return {Renderer}
+     * @return {Penne}
      */
     constructor(domElement, options = {}) {
         assert(isHTMLElement(domElement), messages.ELEMENT_EXPECTED);
@@ -36,14 +26,27 @@ export default class Renderer {
     }
 
     /**
-     * @method add
-     * @param {Shape} shape
-     * @return {Shape}
+     * @method create
+     * @param {Shape[]} shapes
+     * @return {Shape[]}
      */
-    add(shape) {
-        assert(isShape(shape), messages.SHAPE_EXPECTED);
-        store.get(this).push(shape);
-        return shape;
+    create(...shapes) {
+
+        const insert = canvas.insert(this[ELEMENT]);
+
+        return shapes.map(shape => {
+
+            assert(isShape(shape), messages.SHAPE_EXPECTED);
+
+            const { group, element } = insert(shape);
+            shape[GROUP]   = group;
+            shape[ELEMENT] = element;
+
+            store.get(this).push(shape);
+            return shape;
+
+        });
+
     }
 
     /**
