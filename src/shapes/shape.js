@@ -1,10 +1,4 @@
-import * as f from './../helpers/functions';
-
-/**
- * @constant ELEMENT
- * @type {Symbol}
- */
-const ELEMENT = Symbol('element');
+import Abstract from './abstract';
 
 /**
  * @property DEFAULTS
@@ -14,12 +8,12 @@ const DEFAULTS = { x: 0, y: 0, width: 100, height: 100 };
 
 /**
  * @module Penne
- * @submodule Rectangle
- * @extends {Shape}
+ * @submodule Shape
+ * @extends {Abstract}
  * @author Adam Timberlake
  * @link https://github.com/Wildhoney/Penne
  */
-export default class Shape {
+export default class Shape extends Abstract {
 
     /**
      * @constructor
@@ -27,26 +21,26 @@ export default class Shape {
      * @return {Shape}
      */
     constructor(attributes = { ...DEFAULTS }) {
-
+        super();
     }
 
     /**
-     * @method dimensions
+     * @method setDimensions
      * @param {Number} height
      * @param {Number} width
-     * @return {Number|null}
+     * @return {void}
      */
-    dimension({ height, width }) {
+    setDimensions({ height, width }) {
 
     }
 
     /**
-     * @method position
+     * @method setPositions
      * @param {Number} top
      * @param {Number} left
-     * @return {Number|null}
+     * @return {void}
      */
-    position({ top, left }) {
+    setPositions({ top, left }) {
 
     }
 

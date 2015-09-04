@@ -32,17 +32,41 @@ export default class Penne {
      */
     create(...shapes) {
 
-        const insert = canvas.insert(this[ELEMENT]);
+        const place = canvas.place(this[ELEMENT]);
 
         return shapes.map(shape => {
 
             assert(isShape(shape), messages.SHAPE_EXPECTED);
 
-            const { group, element } = insert(shape);
-            shape[GROUP]   = group;
-            shape[ELEMENT] = element;
-
             store.get(this).push(shape);
+
+            const { group, element } = place(shape);
+            shape.setGroup(group);
+            shape.setElement(element);
+
+            return shape;
+
+        });
+
+    }
+
+    /**
+     * @method destroy
+     * @param {Shape[]} shapes
+     * @return {Shape[]}
+     */
+    destroy(...shapes) {
+
+        shapes.map(shape => {
+
+            assert(isShape(shape), messages.SHAPE_EXPECTED);
+
+            const index = store.get(this).indexOf(shape);
+            ~index && store.get(this).splice(index, 1);
+
+            shape.removeGroup();
+            shape.removeElement();
+
             return shape;
 
         });
@@ -51,22 +75,14 @@ export default class Penne {
 
     /**
      * @method remove
-     * @param {Shape} shape
-     * @return {Shape}
+     * @param {Shape[]} shapes
+     * @return {Shape[]}
      */
-    remove(shape) {
-        assert(isShape(shape), messages.SHAPE_EXPECTED);
-        const index  = store.get(this).indexOf(shape);
-        ~index && store.get(this).splice(index, 1);
-        return shape;
-    }
-
-    /**
-     * @method clear
-     * @return {void}
-     */
-    clear() {
-        store.get(this).map(shape => this.remove(shape));
-    }
+    //remove(...shapes) {
+    //    assert(isShape(shape), messages.SHAPE_EXPECTED);
+    //    const index  = store.get(this).indexOf(shape);
+    //    ~index && store.get(this).splice(index, 1);
+    //    return shape;
+    //}
 
 }

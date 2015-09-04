@@ -1,16 +1,20 @@
 /**
- * @method insert
+ * @method place
  * @param {HTMLElement} canvas
  * @return {Function}
  */
-export function insert(canvas) {
+export function place(canvas) {
 
-    return shape => {
+    /**
+     * @method anonymous
+     * @return {Object}
+     */
+    return () => {
 
         const group   = canvas.append('g');
         const element = group.append('rect');
 
-        return { group, element };
+        return { group: group.node(), element: element.node() };
 
     };
 

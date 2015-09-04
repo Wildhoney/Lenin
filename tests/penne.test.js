@@ -17,25 +17,23 @@ beforeEach(() => {
 
 describe('Penne', () => {
 
-    it('Should be able to create a shape;', () => {
+    it('Should be able to create shapes;', () => {
 
         const firstRectangle  = new Rectangle();
         const secondRectangle = new Rectangle();
 
         penne.create(firstRectangle, secondRectangle);
         expect(shapes.length).toEqual(2);
-        expect(element.querySelectorAll('g rect').length).toEqual(2);
 
-        const firstGroup    = element.querySelector('g');
-        const secondGroup   = element.querySelector('g');
-        const firstElement  = firstGroup.querySelector('rect');
-        const secondElement = secondGroup.querySelector('rect');
+    });
 
-        expect(firstRectangle[GROUP].node()).toEqual(firstGroup);
-        expect(firstRectangle[ELEMENT].node()).toEqual(firstElement);
+    it('Should be able to destroy shapes;', () => {
 
-        expect(secondRectangle[GROUP].node()).toEqual(secondGroup);
-        expect(secondRectangle[ELEMENT].node()).toEqual(secondElement);
+        const firstRectangle  = new Rectangle();
+        const secondRectangle = new Rectangle();
+
+        penne.destroy(firstRectangle, secondRectangle);
+        expect(shapes.length).toEqual(0);
 
     });
 
