@@ -5,7 +5,7 @@
  * @return {void}
  */
 export function exception(message) {
-    throw new Error(`Penne: ${message}.`);
+    throw new Error(`Lenin: ${message}.`);
 }
 
 /**

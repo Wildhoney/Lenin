@@ -7,11 +7,11 @@ import Abstract from './abstract';
 const DEFAULTS = { x: 0, y: 0, width: 100, height: 100 };
 
 /**
- * @module Penne
+ * @module Lenin
  * @submodule Shape
  * @extends {Abstract}
  * @author Adam Timberlake
- * @link https://github.com/Wildhoney/Penne
+ * @link https://github.com/Wildhoney/Lenin
  */
 export default class Shape extends Abstract {
 

@@ -1,22 +1,20 @@
 import d3 from 'd3';
-import {store} from './store';
 import {assert, isShape, isHTMLElement} from './helpers/utilities';
-import * as messages from './helpers/messages';
-import * as canvas from './helpers/canvas';
+import messages from './helpers/messages';
 import {ELEMENT, GROUP, OPTIONS} from './helpers/symbols';
 
 /**
- * @module Penne
+ * @module Lenin
  * @author Adam Timberlake
- * @link https://github.com/Wildhoney/Penne
+ * @link https://github.com/Wildhoney/Lenin
  */
-export default class Penne {
+export default class Lenin {
 
     /**
      * @constructor
      * @param {HTMLElement} domElement
      * @param {Object} [options={}]
-     * @return {Penne}
+     * @return {Lenin}
      */
     constructor(domElement, options = {}) {
         assert(isHTMLElement(domElement), messages.ELEMENT_EXPECTED);
@@ -32,7 +30,7 @@ export default class Penne {
      */
     create(...shapes) {
 
-        const attach = canvas.attach(this[ELEMENT]);
+        const attach = canvas.attach(this.getElement());
 
         return shapes.map(shape => {
 
@@ -77,15 +75,11 @@ export default class Penne {
     }
 
     /**
-     * @method remove
-     * @param {Shape[]} shapes
-     * @return {Shape[]}
+     * @method getElement
+     * @return {HTMLElement}
      */
-    //remove(...shapes) {
-    //    assert(isShape(shape), messages.SHAPE_EXPECTED);
-    //    const index  = store.get(this).indexOf(shape);
-    //    ~index && store.get(this).splice(index, 1);
-    //    return shape;
-    //}
+    getElement() {
+        return this[ELEMENT];
+    }
 
 }

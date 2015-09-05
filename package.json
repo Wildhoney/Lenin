@@ -1,14 +1,14 @@
 {
-  "name": "penne",
+  "name": "lenin",
   "version": "0.1.0",
   "description": "Diagram tool using D3 providing a set of common functions for easy integration and extensibility.",
-  "main": "src/penne.js",
+  "main": "src/lenin.js",
   "scripts": {
     "test": "npm run test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Wildhoney/Penne.git"
+    "url": "git+https://github.com/Wildhoney/Lenin.git"
   },
   "keywords": [
     "drawing",
@@ -23,9 +23,9 @@
   "author": "Adam Timberlake <adam.timberlake@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Wildhoney/Penne/issues"
+    "url": "https://github.com/Wildhoney/Lenin/issues"
   },
-  "homepage": "https://github.com/Wildhoney/Penne#readme",
+  "homepage": "https://github.com/Wildhoney/Lenin#readme",
   "dependencies": {
     "d3": "^3.5.6",
     "eventemitter2": "^0.4.14"

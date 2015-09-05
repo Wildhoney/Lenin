@@ -1,4 +1,4 @@
-release: penne.js
+release: lenin.js
 
 dependencies:
   - public/vendor/d3/d3.js

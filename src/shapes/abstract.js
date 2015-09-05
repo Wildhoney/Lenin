@@ -1,10 +1,10 @@
 import {ELEMENT, GROUP} from './../helpers/symbols';
 
 /**
- * @module Penne
+ * @module Lenin
  * @submodule Abstract
  * @author Adam Timberlake
- * @link https://github.com/Wildhoney/Penne
+ * @link https://github.com/Wildhoney/Lenin
  */
 export default class Abstract {
 

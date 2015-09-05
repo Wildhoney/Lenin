@@ -7,7 +7,7 @@
         yaml       = require('js-yaml'),
         browserify = require('browserify'),
         babelify   = require('babelify'),
-        config     = yaml.safeLoad(fs.readFileSync('./penne.yml', 'utf8'));
+        config     = yaml.safeLoad(fs.readFileSync('./lenin.yml', 'utf8'));
 
     gulp.task('karma', function() {
 

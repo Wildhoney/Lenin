@@ -1,5 +1,5 @@
-import Penne from 'penne';
+import Lenin from 'lenin';
 
 const element = document.querySelector('canvas');
-const penne   = new Penne(element);
+const lenin   = new Lenin(element);
 
