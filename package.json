@@ -28,7 +28,9 @@
   "homepage": "https://github.com/Wildhoney/Lenin#readme",
   "dependencies": {
     "d3": "^3.5.6",
-    "eventemitter2": "^0.4.14"
+    "eventemitter2": "^0.4.14",
+    "mousetrap": "^1.5.3",
+    "object-assign": "^4.0.1"
   },
   "devDependencies": {
     "babelify": "^6.3.0",

@@ -36,3 +36,12 @@ export function isHTMLElement(item) {
 export function assert(validator, message) {
     !validator && exception(message);
 }
+
+/**
+ * @method isFunction
+ * @param {*} object
+ * @return {Boolean}
+ */
+export function isFunction(object) {
+    return typeof object === 'function';
+}
