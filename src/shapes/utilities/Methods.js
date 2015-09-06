@@ -1,10 +1,10 @@
-import * as c from './../Constants';
+import {LN_POS_ABSOLUTE} from './../Constants';
 
 /**
  * @constant DEFAULT_POSITION_STRATEGY
  * @type {String}
  */
-const DEFAULT_POSITION_STRATEGY = c.LN_POS_ABSOLUTE;
+const DEFAULT_POSITION_STRATEGY = LN_POS_ABSOLUTE;
 
 /**
  * @module Lenin
@@ -22,6 +22,15 @@ export default function methods({ shape, group, collection }) {
          */
         remove: function() {
             group.remove();
+        },
+
+        /**
+         * @method abilities
+         * @param {Number} value
+         * @return {void}
+         */
+        abilities: function abilities(value) {
+
         },
 
         /**
