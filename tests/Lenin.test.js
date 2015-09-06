@@ -12,10 +12,10 @@ describe('Lenin', () => {
         expect(element.querySelectorAll('g').length).toEqual(1);
         expect(element.querySelectorAll('g rect').length).toEqual(1);
 
-        //lenin.attach(rectangle)
-        //    .position({ x: 100, y: 200 }, LN_POS_RELATIVE)
-        //    .dimensions({ x: 100, y: 100 }, LN_POS_ABSOLUTE)
-        //    .abilities(LN_ABL_ALL ^ LN_ABL_DRAGGABLE | LN_ABL_MOVABLE);
+        //lenin.append('rect')
+        //     .position({ x: 100, y: 200 }, LN_POS_RELATIVE)
+        //     .dimensions({ x: 100, y: 100 }, LN_POS_ABSOLUTE)
+        //     .abilities(Movable, Draggable);
 
     });
 

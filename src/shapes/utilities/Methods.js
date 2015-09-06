@@ -26,10 +26,10 @@ export default function methods({ shape, group, collection }) {
 
         /**
          * @method abilities
-         * @param {Number} value
+         * @param {Array} list
          * @return {void}
          */
-        abilities: function abilities(value) {
+        abilities: function abilities(...list) {
 
         },
 
