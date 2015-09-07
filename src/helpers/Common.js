@@ -11,15 +11,6 @@ export function exception(message) {
 }
 
 /**
- * @method isShape
- * @param {*} item
- * @return {Boolean}
- */
-export function isShape(item) {
-    return item;
-}
-
-/**
  * @method isHTMLElement
  * @param {*} item
  * @return {Boolean}
