@@ -28,4 +28,17 @@ describe('Lenin', () => {
         expect(() => lenin.append('unsupported_shape_name')).toThrow(new Error(`Lenin: ${messages.SHAPE_UNSUPPORTED}.`));
     });
 
+    it('Should be able to register a custom shape name;', () => {
+
+        const {lenin, element} = getLenin();
+        expect(() => lenin.append('custom_shape')).toThrow(new Error(`Lenin: ${messages.SHAPE_UNSUPPORTED}.`));
+
+        lenin.register('custom_shape');
+        expect(() => lenin.append('custom_shape')).not.toThrow(new Error(`Lenin: ${messages.SHAPE_UNSUPPORTED}.`));
+
+        expect(element.querySelectorAll('g').length).toEqual(1);
+        expect(element.querySelectorAll('g custom_shape').length).toEqual(1);
+
+    });
+
 });

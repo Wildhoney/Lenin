@@ -26,7 +26,7 @@ export default function methods({ shape, group, collection }) {
 
         /**
          * @method abilities
-         * @param {Function[]} list
+         * @param {Function[]} [list]
          * @return {void}
          */
         abilities: function abilities(...list) {

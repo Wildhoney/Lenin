@@ -36,6 +36,18 @@ export default class Lenin {
     }
 
     /**
+     * @method register
+     * @param {String} name
+     * @param {Object} [methods={}]
+     * @return {void}
+     */
+    register(name, methods = {}) {
+
+        shapeMap.set(name, methods);
+
+    }
+
+    /**
      * @method append
      * @param {String} name
      * @return {Object}
@@ -43,7 +55,7 @@ export default class Lenin {
     append(name) {
 
         // Ensure Lenin supports the passed in shape name.
-        assert(!!~shapeMap.indexOf(name), messages.SHAPE_UNSUPPORTED);
+        assert(shapeMap.has(name), messages.SHAPE_UNSUPPORTED);
 
         const domElement = this[ELEMENT];
         const group      = domElement.append('g');
