@@ -45,9 +45,9 @@ describe('Lenin', () => {
 
         const {lenin, element} = getLenin();
         const rect = lenin.append('rect');
-        const position = rect.attr('x', 25).position({ x: -5, y: 100 }).position();
+        const dimensions = rect.attr('height', 25).dimensions({ height: 5, width: 150 }, 'absolute').dimensions();
 
-        console.log(position);
+        console.log(dimensions);
 
     });
 

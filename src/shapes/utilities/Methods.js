@@ -91,8 +91,22 @@ export default function methods({ shape, group, collection, emitter }) {
          * @param {String} [strategy=DEFAULT_POSITION_STRATEGY]
          * @return {Object|void}
          */
-        dimensions: function position({ width, height }, strategy = DEFAULT_POSITION_STRATEGY) {
-            return this;
+        dimensions: function position({ width, height } = {}, strategy = DEFAULT_POSITION_STRATEGY) {
+
+            const aW = Number(shape.attr('width'));
+            const aH = Number(shape.attr('height'));
+
+            const nX = width || aW;
+            const nY = height || aH;
+
+            if (isUndefined(width) && isUndefined(height)) {
+                return { width: nX, height: nY };
+            }
+
+            const fX = isRelative(strategy) ? aW + nX : nX;
+            const fY = isRelative(strategy) ? aH + nY : nY;
+            return shape.attr('width', fX).attr('height', fY);
+
         }
 
     }
