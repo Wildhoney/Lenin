@@ -1,19 +1,12 @@
 import objectAssign from 'object-assign';
 import {LN_POS_ABSOLUTE, LN_POS_RELATIVE} from './../Constants';
-import {isUndefined} from './../../helpers/Common';
+import {coordinatesHandler} from './../utilities/Common';
 
 /**
  * @constant DEFAULT_POSITION_STRATEGY
  * @type {String}
  */
 const DEFAULT_POSITION_STRATEGY = LN_POS_ABSOLUTE;
-
-/**
- * @method isRelative
- * @param {String} strategy
- * @return {Boolean}
- */
-const isRelative = strategy => strategy === LN_POS_RELATIVE;
 
 /**
  * @module Lenin
@@ -28,6 +21,12 @@ export default function methods({ shape, group, collection, emitter }) {
      * @type {Array}
      */
     const registeredAbilities = [];
+
+    /**
+     * @property handleCoordinates
+     * @type {Function}
+     */
+    const handleCoordinates = coordinatesHandler(shape);
 
     return {
 
@@ -64,24 +63,10 @@ export default function methods({ shape, group, collection, emitter }) {
          * @param {Number} [x]
          * @param {Number} [y]
          * @param {String} [strategy=DEFAULT_POSITION_STRATEGY]
-         * @return {Object|void}
+         * @return {Object}
          */
         position: function position({ x, y } = {}, strategy = DEFAULT_POSITION_STRATEGY) {
-
-            const aX = Number(shape.attr('x'));
-            const aY = Number(shape.attr('y'));
-
-            const nX = x || aX;
-            const nY = y || aY;
-
-            if (isUndefined(x) && isUndefined(y)) {
-                return { x: nX, y: nY };
-            }
-
-            const fX = isRelative(strategy) ? aX + nX : nX;
-            const fY = isRelative(strategy) ? aY + nY : nY;
-            return shape.attr('x', fX).attr('y', fY);
-
+            return handleCoordinates('x', 'y', x, y, strategy);
         },
 
         /**
@@ -89,24 +74,10 @@ export default function methods({ shape, group, collection, emitter }) {
          * @param {Number} [width]
          * @param {Number} [height]
          * @param {String} [strategy=DEFAULT_POSITION_STRATEGY]
-         * @return {Object|void}
+         * @return {Object}
          */
         dimensions: function position({ width, height } = {}, strategy = DEFAULT_POSITION_STRATEGY) {
-
-            const aW = Number(shape.attr('width'));
-            const aH = Number(shape.attr('height'));
-
-            const nX = width || aW;
-            const nY = height || aH;
-
-            if (isUndefined(width) && isUndefined(height)) {
-                return { width: nX, height: nY };
-            }
-
-            const fX = isRelative(strategy) ? aW + nX : nX;
-            const fY = isRelative(strategy) ? aH + nY : nY;
-            return shape.attr('width', fX).attr('height', fY);
-
+            return handleCoordinates('width', 'height', width, height, strategy);
         }
 
     }
