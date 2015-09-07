@@ -1,13 +1,25 @@
 (function main() {
 
-    var gulp       = require('gulp'),
-        karma      = require('gulp-karma'),
-        jshint     = require('gulp-jshint'),
-        fs         = require('fs'),
-        yaml       = require('js-yaml'),
-        browserify = require('browserify'),
-        babelify   = require('babelify'),
-        config     = yaml.safeLoad(fs.readFileSync('./lenin.yml', 'utf8'));
+    var gulp        = require('gulp'),
+        karma       = require('gulp-karma'),
+        jshint      = require('gulp-jshint'),
+        fs          = require('fs'),
+        yaml        = require('js-yaml'),
+        browserify  = require('browserify'),
+        babelify    = require('babelify'),
+        config      = yaml.safeLoad(fs.readFileSync('./lenin.yml', 'utf8')),
+        bundleFiles = [].concat('example/js/application.js', config.src);
+
+    var compile = function(destPath, entryFile) {
+
+        return browserify({ debug: true })
+            .transform(babelify)
+            .require(entryFile, { entry: true })
+            .bundle()
+            .on('error', function (model) { console.error(['Error:', model.message].join(' ')); })
+            .pipe(fs.createWriteStream(destPath));
+
+    };
 
     gulp.task('karma', function() {
 
@@ -22,6 +34,10 @@
 
     });
 
+    gulp.task('example', function() {
+        compile('example/js/bundle.js', bundleFiles[0]);
+    });
+
     gulp.task('lint', function() {
 
         return gulp.src(config.src)
@@ -33,6 +49,10 @@
     });
 
     gulp.task('test', ['lint', 'karma']);
-    gulp.task('default', ['test']);
+    gulp.task('build', ['example']);
+    gulp.task('default', ['test', 'build']);
+    gulp.task('watch', function watch() {
+        gulp.watch(bundleFiles, ['build'])
+    });
 
 })();

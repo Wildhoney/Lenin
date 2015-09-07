@@ -1,5 +1,10 @@
-import Lenin from 'lenin';
+import Lenin from './../../src/Lenin';
 
-const element = document.querySelector('canvas');
-const lenin   = new Lenin(element);
+document.addEventListener('DOMContentLoaded', () => {
 
+    const element = document.querySelector('svg');
+    const lenin   = new Lenin(element);
+
+    console.log(lenin);
+
+});

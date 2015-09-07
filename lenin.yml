@@ -5,6 +5,7 @@ dependencies:
   - public/vendor/mousetrap/mousetrap.js
 
 src:
+  - src/Lenin.js
   - src/*.js
   - src/**/*.js
   - src/**/**/*.js

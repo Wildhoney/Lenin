@@ -16,7 +16,7 @@ export function exception(message) {
  * @return {Boolean}
  */
 export function isHTMLElement(item) {
-    return item instanceof HTMLElement;
+    return item.nodeType === Node.ELEMENT_NODE;
 }
 
 /**

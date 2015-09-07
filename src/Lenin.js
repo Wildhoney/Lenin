@@ -8,16 +8,10 @@ import methods from './shapes/utilities/Methods';
 import shapeMap from './shapes/utilities/Map';
 
 /**
- * @property ELEMENT
- * @type {Symbol}
+ * @property registry
+ * @type {Map}
  */
-export const ELEMENT = Symbol('element');
-
-/**
- * @property EMITTER
- * @type {Symbol}
- */
-export const EMITTER = Symbol('emitter');
+const registry = new Map();
 
 /**
  * @module Lenin
@@ -38,9 +32,13 @@ export default class Lenin {
 
         const EventEmitter = () => {};
 
-        // Initiate D3 using the given canvas element.
-        this[ELEMENT] = d3.select(domElement);
-        this[EMITTER] = new EventEmitter();
+        registry.set(this, {
+
+            // Initiate D3 using the given canvas element.
+            element: d3.select(domElement),
+            emitter: new EventEmitter()
+
+        });
 
         store.set(domElement, []);
 
@@ -66,8 +64,8 @@ export default class Lenin {
         // Ensure Lenin supports the passed in shape name.
         assert(shapeMap.has(name), messages.SHAPE_UNSUPPORTED);
 
-        const domElement = this[ELEMENT];
-        const emitter    = this[EMITTER];
+        const domElement = register.get(this).element;
+        const emitter    = register.get(this).emitter;
         const group      = domElement.append('g');
         const shape      = group.append(name).datum({});
 
