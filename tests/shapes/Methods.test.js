@@ -1,6 +1,6 @@
 import Lenin from './../../src/Lenin';
 import {getLenin} from './../Setup';
-import {LN_POS_RELATIVE} from './../../src/shapes/Constants';
+import * as c from './../../src/shapes/Constants';
 
 describe('Methods', () => {
 
@@ -21,7 +21,7 @@ describe('Methods', () => {
         expect(secondDimensions.width).toEqual(150);
         expect(Number(rect.attr('width'))).toEqual(150);
 
-        const thirdDimensions = rect.dimensions({ height: 70, width: -20 }, LN_POS_RELATIVE).dimensions();
+        const thirdDimensions = rect.dimensions({ height: 70, width: -20 }, c.LN_POS_RELATIVE).dimensions();
         expect(thirdDimensions.height).toEqual(140);
         expect(Number(rect.attr('height'))).toEqual(140);
         expect(thirdDimensions.width).toEqual(130);
@@ -46,11 +46,19 @@ describe('Methods', () => {
         expect(secondDimensions.y).toEqual(90);
         expect(Number(rect.attr('y'))).toEqual(90);
 
-        const thirdDimensions = rect.positions({ x: 20, y: -60 }, LN_POS_RELATIVE).positions();
+        const thirdDimensions = rect.positions({ x: 20, y: -60 }, c.LN_POS_RELATIVE).positions();
         expect(thirdDimensions.x).toEqual(40);
         expect(Number(rect.attr('x'))).toEqual(40);
         expect(thirdDimensions.y).toEqual(30);
         expect(Number(rect.attr('y'))).toEqual(30);
+
+    });
+
+    it('Should be able to set the abilities for a given shape;', () => {
+
+        const {lenin} = getLenin();
+        const abilities = lenin.append('circle').abilities(c.LN_ABL_DRAGGABLE & c.LN_ABL_MOVABLE).abilities();
+        expect(abilities).toEqual(c.LN_ABL_DRAGGABLE & c.LN_ABL_MOVABLE);
 
     });
 

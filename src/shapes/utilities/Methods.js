@@ -1,12 +1,19 @@
 import objectAssign from 'object-assign';
-import {LN_POS_ABSOLUTE, LN_POS_RELATIVE} from './../Constants';
+import {LN_POS_ABSOLUTE, LN_POS_RELATIVE, LN_ABL_ALL} from './../Constants';
 import {coordinatesHandler} from './../utilities/Common';
+import {isUndefined} from './../../helpers/Common';
 
 /**
  * @constant DEFAULT_POSITION_STRATEGY
  * @type {String}
  */
 const DEFAULT_POSITION_STRATEGY = LN_POS_ABSOLUTE;
+
+/**
+ * @constant DEFAULT_ABILITY_PERMISSION
+ * @type {Number}
+ */
+const DEFAULT_ABILITY_PERMISSION = LN_ABL_ALL;
 
 /**
  * @module Lenin
@@ -17,10 +24,10 @@ const DEFAULT_POSITION_STRATEGY = LN_POS_ABSOLUTE;
 export default function methods({ shape, group, collection, emitter }) {
 
     /**
-     * @constant registeredAbilities
-     * @type {Array}
+     * @property options
+     * @type {Object}
      */
-    const registeredAbilities = [];
+    const options = { abilities: DEFAULT_ABILITY_PERMISSION };
 
     /**
      * @property handleCoordinates
@@ -40,20 +47,16 @@ export default function methods({ shape, group, collection, emitter }) {
 
         /**
          * @method abilities
-         * @param {Function[]} [list]
-         * @return {Object|Array}
+         * @param {Number} value
+         * @return {Object|Number}
          */
-        abilities: function abilities(...list) {
+        abilities: function abilities(value) {
 
-            if (!list.length) {
-                return registeredAbilities;
+            if (isUndefined(value)) {
+                return options.abilities;
             }
 
-            list.forEach(ability => {
-                const item = ability({ shape, emitter });
-                registeredAbilities.push(item);
-            });
-
+            options.abilities = value;
             return this;
 
         },
