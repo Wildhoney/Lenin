@@ -59,13 +59,13 @@ export default function methods({ shape, group, collection, emitter }) {
         },
 
         /**
-         * @method position
+         * @method positions
          * @param {Number} [x]
          * @param {Number} [y]
          * @param {String} [strategy=DEFAULT_POSITION_STRATEGY]
          * @return {Object}
          */
-        position: function position({ x, y } = {}, strategy = DEFAULT_POSITION_STRATEGY) {
+        positions: function positions({ x, y } = {}, strategy = DEFAULT_POSITION_STRATEGY) {
             return handleCoordinates('x', 'y', x, y, strategy);
         },
 
@@ -76,7 +76,7 @@ export default function methods({ shape, group, collection, emitter }) {
          * @param {String} [strategy=DEFAULT_POSITION_STRATEGY]
          * @return {Object}
          */
-        dimensions: function position({ width, height } = {}, strategy = DEFAULT_POSITION_STRATEGY) {
+        dimensions: function dimensions({ width, height } = {}, strategy = DEFAULT_POSITION_STRATEGY) {
             return handleCoordinates('width', 'height', width, height, strategy);
         }
 

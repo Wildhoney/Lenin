@@ -2,6 +2,11 @@ import Lenin from './../src/Lenin';
 import messages from './../src/helpers/Messages';
 import {getLenin} from './Setup';
 
+//lenin.append('rect')
+//     .position({ x: 100, y: 200 }, LN_POS_RELATIVE)
+//     .dimensions({ x: 100, y: 100 }, LN_POS_ABSOLUTE)
+//     .abilities(Movable, Draggable);
+
 describe('Lenin', () => {
 
     it('Should be able to append a shape;', () => {
@@ -33,21 +38,6 @@ describe('Lenin', () => {
 
         expect(element.querySelectorAll('g').length).toEqual(1);
         expect(element.querySelectorAll('g custom_shape').length).toEqual(1);
-
-    });
-
-    it('Should be able to chain methods;', () => {
-
-        //lenin.append('rect')
-        //     .position({ x: 100, y: 200 }, LN_POS_RELATIVE)
-        //     .dimensions({ x: 100, y: 100 }, LN_POS_ABSOLUTE)
-        //     .abilities(Movable, Draggable);
-
-        const {lenin, element} = getLenin();
-        const rect = lenin.append('rect');
-        const dimensions = rect.attr('height', 25).dimensions({ height: 5, width: 150 }, 'absolute').dimensions();
-
-        console.log(dimensions);
 
     });
 
