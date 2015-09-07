@@ -23,7 +23,7 @@ export function coordinatesHandler(shape) {
      * @param {String} strategy
      * @return {Object}
      */
-    return (aS, bS, aV, bV, strategy) => {
+    return (aS = 'a', bS = 'b', aV, bV, strategy) => {
 
         const aW = Number(shape.attr(aS));
         const aH = Number(shape.attr(bS));
