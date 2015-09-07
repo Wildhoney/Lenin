@@ -1,6 +1,6 @@
 /**
  * @module Lenin
- * @submodule Rect
+ * @submodule Circle
  * @author Adam Timberlake
  * @link https://github.com/Wildhoney/Lenin
  */

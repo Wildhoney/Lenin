@@ -1,3 +1,5 @@
+import objectAssign from 'object-assign';
+
 /**
  * @method exception
  * @throw {Error}
@@ -44,4 +46,13 @@ export function assert(validator, message) {
  */
 export function isFunction(object) {
     return typeof object === 'function';
+}
+
+/**
+ * @method isUndefined
+ * @param {*} object
+ * @return {Boolean}
+ */
+export function isUndefined(object) {
+    return typeof object === 'undefined';
 }

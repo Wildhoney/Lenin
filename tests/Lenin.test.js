@@ -12,11 +12,6 @@ describe('Lenin', () => {
         expect(element.querySelectorAll('g').length).toEqual(1);
         expect(element.querySelectorAll('g rect').length).toEqual(1);
 
-        //lenin.append('rect')
-        //     .position({ x: 100, y: 200 }, LN_POS_RELATIVE)
-        //     .dimensions({ x: 100, y: 100 }, LN_POS_ABSOLUTE)
-        //     .abilities(Movable, Draggable);
-
     });
 
     it('Should raise an exception when a non-HTMLElement is passed;', () => {
@@ -38,6 +33,21 @@ describe('Lenin', () => {
 
         expect(element.querySelectorAll('g').length).toEqual(1);
         expect(element.querySelectorAll('g custom_shape').length).toEqual(1);
+
+    });
+
+    it('Should be able to chain methods;', () => {
+
+        //lenin.append('rect')
+        //     .position({ x: 100, y: 200 }, LN_POS_RELATIVE)
+        //     .dimensions({ x: 100, y: 100 }, LN_POS_ABSOLUTE)
+        //     .abilities(Movable, Draggable);
+
+        const {lenin, element} = getLenin();
+        const rect = lenin.append('rect');
+        const position = rect.attr('x', 25).position({ x: -5, y: 100 }).position();
+
+        console.log(position);
 
     });
 

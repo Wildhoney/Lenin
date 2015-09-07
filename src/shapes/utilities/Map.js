@@ -1,4 +1,5 @@
-import Rect from './../types/Rect';
+import Rect   from './../types/Rect';
+import Circle from './../types/Circle';
 
 /**
  * @module Lenin
@@ -8,5 +9,6 @@ import Rect from './../types/Rect';
  */
 const map = new Map();
 map.set('rect', Rect);
+map.set('circle', Circle);
 
 export default map;

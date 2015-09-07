@@ -1,4 +1,5 @@
 import d3 from 'd3';
+//import EventEmitter from 'eventemitter2';
 import objectAssign from 'object-assign';
 import messages from './../src/helpers/Messages';
 import store from './../src/Store';
@@ -11,6 +12,12 @@ import shapeMap from './shapes/utilities/Map';
  * @type {Symbol}
  */
 export const ELEMENT = Symbol('element');
+
+/**
+ * @property EMITTER
+ * @type {Symbol}
+ */
+export const EMITTER = Symbol('emitter');
 
 /**
  * @module Lenin
@@ -29,8 +36,12 @@ export default class Lenin {
         // Assert that we have a valid DOM element.
         assert(isHTMLElement(domElement), messages.ELEMENT_EXPECTED);
 
+        const EventEmitter = () => {};
+
         // Initiate D3 using the given canvas element.
         this[ELEMENT] = d3.select(domElement);
+        this[EMITTER] = new EventEmitter();
+
         store.set(domElement, []);
 
     }
@@ -42,9 +53,7 @@ export default class Lenin {
      * @return {void}
      */
     register(name, methods = {}) {
-
         shapeMap.set(name, methods);
-
     }
 
     /**
@@ -58,19 +67,19 @@ export default class Lenin {
         assert(shapeMap.has(name), messages.SHAPE_UNSUPPORTED);
 
         const domElement = this[ELEMENT];
+        const emitter    = this[EMITTER];
         const group      = domElement.append('g');
-        const shape      = group.append(name);
+        const shape      = group.append(name).datum({});
 
         // Push shape into the collection for the associated DOM element.
         const collection = store.get(domElement.node());
         collection.push({ shape, group });
 
         // Extend D3's methods with Lenin-specific methods.
-        const extension  = methods({ group, shape, collection });
-        const assign     = isFunction(Object.assign) ? Object.assign : objectAssign;
+        const extension = methods({ group, shape, collection, emitter });
 
         // Yield the amalgamated methods.
-        return assign(shape, extension);
+        return objectAssign(shape, extension);
 
     }
 
