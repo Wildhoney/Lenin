@@ -18,7 +18,7 @@ describe('Lenin', () => {
         expect(element.querySelectorAll('g rect').length).toEqual(1);
 
     });
-
+    //
     it('Should raise an exception when a non-HTMLElement is passed;', () => {
         expect(() => new Lenin({})).toThrow(new Error(`Lenin: ${messages.ELEMENT_EXPECTED}.`));
     });

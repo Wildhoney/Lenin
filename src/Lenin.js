@@ -64,8 +64,8 @@ export default class Lenin {
         // Ensure Lenin supports the passed in shape name.
         assert(shapeMap.has(name), messages.SHAPE_UNSUPPORTED);
 
-        const domElement = register.get(this).element;
-        const emitter    = register.get(this).emitter;
+        const domElement = registry.get(this).element;
+        const emitter    = registry.get(this).emitter;
         const group      = domElement.append('g');
         const shape      = group.append(name).datum({});
 
