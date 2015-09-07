@@ -14,6 +14,16 @@ import shapeMap from './shapes/utilities/Map';
 const registry = new Map();
 
 /**
+ * @constant DEFAULT_OPTIONS
+ * @type {Number}
+ */
+const DEFAULT_OPTIONS = {
+    height: 500,
+    width: 500,
+    gridSize: [10, 10]
+};
+
+/**
  * @module Lenin
  * @author Adam Timberlake
  * @link https://github.com/Wildhoney/Lenin
@@ -23,20 +33,23 @@ export default class Lenin {
     /**
      * @method constructor
      * @param {HTMLElement} domElement
+     * @param {Object} [options={}]
      * @return {Lenin}
      */
-    constructor(domElement) {
+    constructor(domElement, options = {}) {
 
         // Assert that we have a valid DOM element.
         assert(isHTMLElement(domElement), messages.ELEMENT_EXPECTED);
 
-        const EventEmitter = () => {};
+        const EventEmitter  = () => {};
+        const mergedOptions = objectAssign(options, DEFAULT_OPTIONS);
 
         registry.set(this, {
 
             // Initiate D3 using the given canvas element.
-            element: d3.select(domElement),
-            emitter: new EventEmitter()
+            element: d3.select(domElement).attr('height', mergedOptions.height).attr('width', mergedOptions.width),
+            emitter: new EventEmitter(),
+            options: mergedOptions
 
         });
 
