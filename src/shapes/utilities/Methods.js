@@ -71,7 +71,7 @@ export default function methods({ shape, group, collection, emitter, canvas }) {
          * @return {Object}
          */
         select: function select() {
-            attributes.selectable.setState(true);
+            attributes.selectable.setSelected(true);
             return this;
         },
 
@@ -80,7 +80,7 @@ export default function methods({ shape, group, collection, emitter, canvas }) {
          * @return {Object}
          */
         deselect: function deselect() {
-            attributes.selectable.setState(false);
+            attributes.selectable.setSelected(false);
             return this;
         },
 

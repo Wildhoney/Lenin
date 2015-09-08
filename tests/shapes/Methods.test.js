@@ -90,6 +90,25 @@ describe('Methods', () => {
 
         });
 
+        it('Should be able to deselect all shapes by clicking on the canvas;', () => {
+
+            const {lenin, element} = getLenin();
+            const shapes  = { first:  lenin.append('rect').select(),
+                              second: lenin.append('rect').select(),
+                              third:  lenin.append('rect').select()};
+
+            expect(shapes.first.selected()).toEqual(true);
+            expect(shapes.second.selected()).toEqual(true);
+            expect(shapes.third.selected()).toEqual(true);
+
+            element.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+
+            expect(shapes.first.selected()).toEqual(false);
+            expect(shapes.second.selected()).toEqual(false);
+            expect(shapes.third.selected()).toEqual(false);
+
+        });
+
     });
 
 });
