@@ -2,6 +2,8 @@ import objectAssign from 'object-assign';
 import {LN_POS_ABSOLUTE, LN_POS_RELATIVE, LN_ABL_ALL} from './../Constants';
 import {coordinatesHandler} from './../utilities/Common';
 import {isUndefined} from './../../helpers/Common';
+import Selectable from './../abilities/Selectable';
+import Resizable from './../abilities/Resizable';
 
 /**
  * @constant DEFAULT_POSITION_STRATEGY
@@ -35,13 +37,36 @@ export default function methods({ shape, group, collection, emitter }) {
      */
     const handleCoordinates = coordinatesHandler(shape);
 
+    /**
+     * @property attributeParameters
+     * @type {Object}
+     */
+    const attributeParameters = { shape, group, collection, emitter };
+
+    /**
+     * @property attributes
+     * @type {Object}
+     */
+    const attributes = {
+        selectable: Selectable(attributeParameters),
+        resizable: Resizable(attributeParameters)
+    };
+
     return {
+
+        /**
+         * @method selected
+         * @return {Boolean}
+         */
+        selected: function selected() {
+            return attributes.selectable.isSelected();
+        },
 
         /**
          * @method remove
          * @return {void}
          */
-        remove: function() {
+        remove: function remove() {
             group.remove();
         },
 

@@ -1,5 +1,5 @@
 import d3 from 'd3';
-//import EventEmitter from 'eventemitter2';
+import ee from 'eventemitter2';
 import objectAssign from 'object-assign';
 import messages from './../src/helpers/Messages';
 import store from './../src/Store';
@@ -41,14 +41,14 @@ export default class Lenin {
         // Assert that we have a valid DOM element.
         assert(isHTMLElement(domElement), messages.ELEMENT_EXPECTED);
 
-        const EventEmitter  = () => {};
+        const eventEmitter  = new ee.EventEmitter2();
         const mergedOptions = objectAssign(options, DEFAULT_OPTIONS);
 
         registry.set(this, {
 
             // Initiate D3 using the given canvas element.
             element: d3.select(domElement).attr('height', mergedOptions.height).attr('width', mergedOptions.width),
-            emitter: new EventEmitter(),
+            emitter: eventEmitter,
             options: mergedOptions
 
         });

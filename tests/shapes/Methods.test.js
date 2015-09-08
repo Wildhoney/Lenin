@@ -62,4 +62,23 @@ describe('Methods', () => {
 
     });
 
+    describe('Selected', () => {
+
+        it('Should be able to determine when a shape has been selected;', () => {
+
+            const {lenin} = getLenin();
+            const rect = lenin.append('rect');
+
+            expect(rect.selected()).toEqual(false);
+
+            rect.node().dispatchEvent(new MouseEvent('click'));
+            expect(rect.selected()).toEqual(true);
+
+            rect.node().dispatchEvent(new MouseEvent('click'));
+            expect(rect.selected()).toEqual(false);
+
+        });
+
+    });
+
 });
