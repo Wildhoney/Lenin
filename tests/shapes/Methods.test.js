@@ -95,7 +95,7 @@ describe('Methods', () => {
             const {lenin, element} = getLenin();
             const shapes  = { first:  lenin.append('rect').select(),
                               second: lenin.append('rect').select(),
-                              third:  lenin.append('rect').select()};
+                              third:  lenin.append('rect').select() };
 
             expect(shapes.first.selected()).toEqual(true);
             expect(shapes.second.selected()).toEqual(true);
