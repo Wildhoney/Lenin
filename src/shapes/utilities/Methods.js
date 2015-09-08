@@ -9,7 +9,7 @@ import {LN_EVT_DESELECT_ALL} from './../Events';
  * @constant DEFAULT_POSITION_STRATEGY
  * @type {String}
  */
-const DEFAULT_POSITION_STRATEGY = LN_POS_ABSOLUTE;
+export const DEFAULT_POSITION_STRATEGY = LN_POS_ABSOLUTE;
 
 /**
  * @constant DEFAULT_ABILITY_PERMISSION
@@ -97,12 +97,14 @@ export default function methods({ shape, groups, collection, emitter, canvas }) 
          * @return {Object|Number}
          */
         abilities: function abilities(value) {
+
             if (isUndefined(value)) {
                 return options.abilities;
             }
 
             options.abilities = value;
             return this;
+
         },
 
         /**

@@ -1,12 +1,6 @@
 import {LN_EVT_RESIZABLE_CREATE, LN_EVT_RESIZABLE_DESTROY} from './../Events';
 
 /**
- * @constant edges
- * @type {Map}
- */
-const edges = new Map();
-
-/**
  * @constant handleRadius
  * @type {Number}
  */
@@ -26,6 +20,12 @@ const handleImage = 'images/handle-main.png';
  */
 export default ({ shape, groups, emitter }) => {
 
+    /**
+     * @constant edges
+     * @type {Map}
+     */
+    const edges = new Map();
+
     return new class Resizable {
 
         /**
@@ -34,9 +34,13 @@ export default ({ shape, groups, emitter }) => {
          */
         constructor() {
 
-            // Configure the events for resizable to create and destroy the handles.
-            emitter.on(LN_EVT_RESIZABLE_CREATE, () => this.createHandles());
-            emitter.on(LN_EVT_RESIZABLE_DESTROY, () => edges.forEach(edge => edge.remove()));
+            emitter.on(LN_EVT_RESIZABLE_CREATE, ({ target }) => {
+                target === shape && this.createHandles();
+            });
+
+            emitter.on(LN_EVT_RESIZABLE_DESTROY, ({ target }) => {
+                target === shape && edges.forEach(edge => edge.remove());
+            });
 
         }
 

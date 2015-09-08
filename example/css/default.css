@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+svg {
+    overflow: visible;
+    margin: 20px;
+    border: 1px solid rgba(0, 0, 0, .15);
+}

@@ -16,6 +16,7 @@ export default ({ shape, collection, emitter }) => {
          * @return {Selectable}
          */
         constructor() {
+
             this.selected = false;
 
             shape.on('click', function onClick() {
@@ -27,6 +28,7 @@ export default ({ shape, collection, emitter }) => {
 
             // Invoked when the user clicks on the canvas to deselect all shapes.
             emitter.on(LN_EVT_DESELECT_ALL, () => this.setState(false));
+
         }
 
         /**
@@ -45,7 +47,7 @@ export default ({ shape, collection, emitter }) => {
          */
         setSelected() {
             this.selected = true;
-            emitter.emit(LN_EVT_RESIZABLE_CREATE);
+            emitter.emit(LN_EVT_RESIZABLE_CREATE, { target: shape });
         }
 
         /**
@@ -54,7 +56,7 @@ export default ({ shape, collection, emitter }) => {
          */
         setDeselected() {
             this.selected = false;
-            emitter.emit(LN_EVT_RESIZABLE_DESTROY);
+            emitter.emit(LN_EVT_RESIZABLE_DESTROY, { target: shape });
         }
 
         /**
