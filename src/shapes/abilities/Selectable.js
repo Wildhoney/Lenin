@@ -21,21 +21,13 @@ export default ({ shape, group, collection, emitter, canvas }) => {
 
             shape.on('click', function onClick() {
                 squashEvent(d3.event);
-                this.handleSelect();
+                this.setState(!this.selected);
             }.bind(this));
 
             emitter.on(LN_EVT_DESELECT_ALL, () => {
                 console.log('LN_EVT_DESELECT_ALL');
             });
 
-        }
-
-        /**
-         * @method handleSelect
-         * @return {void}
-         */
-        handleSelect() {
-            this.setState(!this.selected);
         }
 
         /**
