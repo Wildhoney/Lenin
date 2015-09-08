@@ -14,8 +14,8 @@ describe('Lenin', () => {
         const {lenin, element} = getLenin();
         const rect = lenin.append('rect');
 
-        expect(element.querySelectorAll('g').length).toEqual(1);
-        expect(element.querySelectorAll('g rect').length).toEqual(1);
+        expect(element.querySelectorAll('g.rect').length).toEqual(1);
+        expect(element.querySelectorAll('g.rect rect').length).toEqual(1);
 
     });
     //
@@ -36,8 +36,8 @@ describe('Lenin', () => {
         lenin.register('custom_shape');
         expect(() => lenin.append('custom_shape')).not.toThrow(new Error(`Lenin: ${messages.SHAPE_UNSUPPORTED}.`));
 
-        expect(element.querySelectorAll('g').length).toEqual(1);
-        expect(element.querySelectorAll('g custom_shape').length).toEqual(1);
+        expect(element.querySelectorAll('g.custom_shape').length).toEqual(1);
+        expect(element.querySelectorAll('g.custom_shape custom_shape').length).toEqual(1);
 
     });
 

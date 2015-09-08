@@ -20,7 +20,8 @@ const registry = new Map();
 const DEFAULT_OPTIONS = {
     height: 500,
     width: 500,
-    gridSize: [10, 10]
+    gridSize: [10, 10],
+    displayClassNames: true
 };
 
 /**
@@ -43,13 +44,18 @@ export default class Lenin {
 
         const eventEmitter  = new ee.EventEmitter2();
         const mergedOptions = objectAssign(options, DEFAULT_OPTIONS);
+        const element       = d3.select(domElement).attr('height', mergedOptions.height).attr('width', mergedOptions.width);
 
         registry.set(this, {
 
             // Initiate D3 using the given canvas element.
-            element: d3.select(domElement).attr('height', mergedOptions.height).attr('width', mergedOptions.width),
+            element,
             emitter: eventEmitter,
-            options: mergedOptions
+            options: mergedOptions,
+            groups: {
+                shapes: element.append('g').classed('shapes', options.displayClassNames),
+                meta: element.append('g').classed('meta', options.displayClassNames)
+            }
 
         });
 
@@ -77,17 +83,19 @@ export default class Lenin {
         // Ensure Lenin supports the passed in shape name.
         assert(shapeMap.has(name), messages.SHAPE_UNSUPPORTED);
 
+        const options    = registry.get(this).options;
         const domElement = registry.get(this).element;
+        const etcGroups  = registry.get(this).groups;
+        const groups     = { group: etcGroups.shapes.append('g').classed(name, options.displayClassNames), ...etcGroups };
         const emitter    = registry.get(this).emitter;
-        const group      = domElement.append('g');
-        const shape      = group.append(name).datum({});
+        const shape      = groups.group.append(name).datum({});
 
         // Push shape into the collection for the associated DOM element.
         const collection = store.get(domElement.node());
-        collection.push({ shape, group });
+        collection.push({ shape, groups });
 
         // Extend D3's methods with Lenin-specific methods.
-        const extension = methods({ group, shape, collection, emitter, canvas: domElement });
+        const extension = methods({ groups, shape, collection, emitter, canvas: domElement });
 
         // Yield the amalgamated methods.
         return objectAssign(shape, extension);
