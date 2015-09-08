@@ -4,6 +4,7 @@ import {coordinatesHandler} from './../utilities/Common';
 import {isUndefined} from './../../helpers/Common';
 import Selectable from './../abilities/Selectable';
 import Resizable from './../abilities/Resizable';
+import {LN_EVT_DESELECT_ALL} from './../Events';
 
 /**
  * @constant DEFAULT_POSITION_STRATEGY
@@ -23,7 +24,7 @@ const DEFAULT_ABILITY_PERMISSION = LN_ABL_ALL;
  * @author Adam Timberlake
  * @link https://github.com/Wildhoney/Lenin
  */
-export default function methods({ shape, group, collection, emitter }) {
+export default function methods({ shape, group, collection, emitter, canvas }) {
 
     /**
      * @property options
@@ -41,7 +42,7 @@ export default function methods({ shape, group, collection, emitter }) {
      * @property attributeParameters
      * @type {Object}
      */
-    const attributeParameters = { shape, group, collection, emitter };
+    const attributeParameters = { shape, group, collection, emitter, canvas };
 
     /**
      * @property attributes
@@ -52,6 +53,9 @@ export default function methods({ shape, group, collection, emitter }) {
         resizable: Resizable(attributeParameters)
     };
 
+    // Configure any common events for all of the shapes.
+    canvas.on('click', () => emitter.emit(LN_EVT_DESELECT_ALL));
+
     return {
 
         /**
@@ -60,6 +64,24 @@ export default function methods({ shape, group, collection, emitter }) {
          */
         selected: function selected() {
             return attributes.selectable.isSelected();
+        },
+
+        /**
+         * @method select
+         * @return {Object}
+         */
+        select: function select() {
+            attributes.selectable.setState(true);
+            return this;
+        },
+
+        /**
+         * @method deselect
+         * @return {Object}
+         */
+        deselect: function deselect() {
+            attributes.selectable.setState(false);
+            return this;
         },
 
         /**

@@ -62,20 +62,31 @@ describe('Methods', () => {
 
     });
 
-    describe('Selected', () => {
+    describe('Selectable', () => {
 
         it('Should be able to determine when a shape has been selected;', () => {
 
             const {lenin} = getLenin();
             const rect = lenin.append('rect');
+            const eventOptions = { bubbles: true, cancelable: true };
 
             expect(rect.selected()).toEqual(false);
 
-            rect.node().dispatchEvent(new MouseEvent('click'));
+            rect.node().dispatchEvent(new MouseEvent('click', eventOptions));
             expect(rect.selected()).toEqual(true);
 
-            rect.node().dispatchEvent(new MouseEvent('click'));
+            rect.node().dispatchEvent(new MouseEvent('click', eventOptions));
             expect(rect.selected()).toEqual(false);
+
+        });
+
+        it('Should be able to select/deselect using the utility functions;', () => {
+
+            const {lenin} = getLenin();
+            const rect = lenin.append('rect');
+
+            expect(rect.select().selected()).toEqual(true);
+            expect(rect.deselect().selected()).toEqual(false);
 
         });
 

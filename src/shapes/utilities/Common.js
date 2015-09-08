@@ -42,3 +42,22 @@ export function coordinatesHandler(shape) {
     };
 
 }
+
+/**
+ * @method unboxEvent
+ * @param {Object} event
+ * @return {Object}
+ */
+export function unboxEvent(event) {
+    return event.originalEvent || event;
+}
+
+/**
+ * @method squashEvent
+ * @param {Object} event
+ * @return {void}
+ */
+export function squashEvent(event) {
+    unboxEvent(event).preventDefault();
+    unboxEvent(event).stopPropagation();
+}

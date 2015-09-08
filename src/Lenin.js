@@ -87,7 +87,7 @@ export default class Lenin {
         collection.push({ shape, group });
 
         // Extend D3's methods with Lenin-specific methods.
-        const extension = methods({ group, shape, collection, emitter });
+        const extension = methods({ group, shape, collection, emitter, canvas: domElement });
 
         // Yield the amalgamated methods.
         return objectAssign(shape, extension);
