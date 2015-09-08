@@ -24,7 +24,7 @@ const DEFAULT_ABILITY_PERMISSION = LN_ABL_ALL;
  * @author Adam Timberlake
  * @link https://github.com/Wildhoney/Lenin
  */
-export default function methods({ shape, group, collection, emitter, canvas }) {
+export default function methods({ shape, groups, collection, emitter, canvas }) {
 
     /**
      * @property options
@@ -42,7 +42,7 @@ export default function methods({ shape, group, collection, emitter, canvas }) {
      * @property attributeParameters
      * @type {Object}
      */
-    const attributeParameters = { shape, group, collection, emitter, canvas };
+    const attributeParameters = { shape, groups, collection, emitter, canvas };
 
     /**
      * @property attributes
@@ -71,7 +71,7 @@ export default function methods({ shape, group, collection, emitter, canvas }) {
          * @return {Object}
          */
         select: function select() {
-            attributes.selectable.setSelected(true);
+            attributes.selectable.setState(true);
             return this;
         },
 
@@ -80,7 +80,7 @@ export default function methods({ shape, group, collection, emitter, canvas }) {
          * @return {Object}
          */
         deselect: function deselect() {
-            attributes.selectable.setSelected(false);
+            attributes.selectable.setState(false);
             return this;
         },
 
@@ -89,7 +89,7 @@ export default function methods({ shape, group, collection, emitter, canvas }) {
          * @return {void}
          */
         remove: function remove() {
-            group.remove();
+            groups.group.remove();
         },
 
         /**
