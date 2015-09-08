@@ -1,5 +1,3 @@
-import objectAssign from 'object-assign';
-
 /**
  * @method exception
  * @throw {Error}

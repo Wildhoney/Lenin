@@ -1,9 +1,8 @@
-import objectAssign from 'object-assign';
-import {LN_POS_ABSOLUTE, LN_POS_RELATIVE, LN_ABL_ALL} from './../Constants';
+import {LN_POS_ABSOLUTE, LN_ABL_ALL} from './../Constants';
 import {coordinatesHandler} from './../utilities/Common';
 import {isUndefined} from './../../helpers/Common';
-import Selectable from './../abilities/Selectable';
-import Resizable from './../abilities/Resizable';
+import selectable from './../abilities/Selectable';
+import resizable from './../abilities/Resizable';
 import {LN_EVT_DESELECT_ALL} from './../Events';
 
 /**
@@ -49,8 +48,8 @@ export default function methods({ shape, groups, collection, emitter, canvas }) 
      * @type {Object}
      */
     const attributes = {
-        selectable: Selectable(attributeParameters),
-        resizable: Resizable(attributeParameters)
+        selectable: selectable(attributeParameters),
+        resizable: resizable(attributeParameters)
     };
 
     // Configure any common events for all of the shapes.
@@ -98,14 +97,12 @@ export default function methods({ shape, groups, collection, emitter, canvas }) 
          * @return {Object|Number}
          */
         abilities: function abilities(value) {
-
             if (isUndefined(value)) {
                 return options.abilities;
             }
 
             options.abilities = value;
             return this;
-
         },
 
         /**
@@ -130,6 +127,6 @@ export default function methods({ shape, groups, collection, emitter, canvas }) 
             return handleCoordinates('width', 'height', width, height, strategy);
         }
 
-    }
+    };
 
 }

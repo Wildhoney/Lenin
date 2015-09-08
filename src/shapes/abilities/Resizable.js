@@ -53,14 +53,14 @@ export default ({ shape, groups, emitter }) => {
             const height      = boundingBox.height;
 
             const edgeMap = {
-                topLeft:      { x,                  y },
-                topMiddle:    { x: x + (width / 2), y },
-                topRight:     { x: x + width,       y },
-                leftMiddle:   { x: x,               y: y + (height / 2) },
-                bottomLeft:   { x: x,               y: y + height },
+                topLeft: { x, y },
+                topMiddle: { x: x + (width / 2), y },
+                topRight: { x: x + width, y },
+                leftMiddle: { x, y: y + (height / 2) },
+                bottomLeft: { x, y: y + height },
                 bottomMiddle: { x: x + (width / 2), y: y + height },
-                bottomRight:  { x: x + width,       y: y + height },
-                rightMiddle:  { x: x + width,       y: y + (height / 2) }
+                bottomRight: { x: x + width, y: y + height },
+                rightMiddle: { x: x + width, y: y + (height / 2) }
             };
 
             Object.keys(edgeMap).forEach(key => {

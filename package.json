@@ -4,7 +4,7 @@
   "description": "Diagram tool using D3 providing a set of common functions for easy integration and extensibility.",
   "main": "src/lenin.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -33,11 +33,13 @@
     "object-assign": "^4.0.1"
   },
   "devDependencies": {
+    "babel-eslint": "^4.1.1",
     "babelify": "^6.3.0",
     "browserify": "^11.0.1",
+    "eslint-config-airbnb": "0.0.8",
     "express": "^4.13.3",
     "gulp": "^3.9.0",
-    "gulp-jshint": "^1.11.2",
+    "gulp-eslint": "^1.0.0",
     "gulp-karma": "0.0.4",
     "jasmine-core": "^2.3.4",
     "js-yaml": "^3.4.0",

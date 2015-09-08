@@ -2,7 +2,7 @@
 
     var gulp        = require('gulp'),
         karma       = require('gulp-karma'),
-        jshint      = require('gulp-jshint'),
+        eslint      = require('gulp-eslint'),
         fs          = require('fs'),
         yaml        = require('js-yaml'),
         browserify  = require('browserify'),
@@ -41,10 +41,9 @@
     gulp.task('lint', function() {
 
         return gulp.src(config.src)
-            .pipe(jshint())
-            .pipe(jshint.reporter('default', {
-                verbose: true
-            }));
+                   .pipe(eslint())
+                   .pipe(eslint.format())
+                   .pipe(eslint.failOnError());
 
     });
 

@@ -32,7 +32,9 @@ export function coordinatesHandler(shape) {
         const nY = bV || aH;
 
         if (isUndefined(aV) && isUndefined(bV)) {
+
             return { [aS]: nX, [bS]: nY };
+
         }
 
         const fX = isRelative(strategy) ? aW + nX : nX;
@@ -49,7 +51,9 @@ export function coordinatesHandler(shape) {
  * @return {Object}
  */
 export function unboxEvent(event) {
+
     return event.originalEvent || event;
+
 }
 
 /**
@@ -58,6 +62,8 @@ export function unboxEvent(event) {
  * @return {void}
  */
 export function squashEvent(event) {
+
     unboxEvent(event).preventDefault();
     unboxEvent(event).stopPropagation();
+
 }

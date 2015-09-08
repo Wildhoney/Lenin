@@ -3,7 +3,7 @@ import ee from 'eventemitter2';
 import objectAssign from 'object-assign';
 import messages from './../src/helpers/Messages';
 import store from './../src/Store';
-import {assert, isHTMLElement, isFunction} from './../src/helpers/Common';
+import {assert, isHTMLElement} from './../src/helpers/Common';
 import methods from './shapes/utilities/Methods';
 import shapeMap from './shapes/utilities/Map';
 
@@ -60,17 +60,16 @@ export default class Lenin {
         });
 
         store.set(domElement, []);
-
     }
 
     /**
      * @method register
      * @param {String} name
-     * @param {Object} [methods={}]
+     * @param {Object} [functions={}]
      * @return {void}
      */
-    register(name, methods = {}) {
-        shapeMap.set(name, methods);
+    register(name, functions = {}) {
+        shapeMap.set(name, functions);
     }
 
     /**

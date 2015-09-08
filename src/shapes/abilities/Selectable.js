@@ -16,21 +16,17 @@ export default ({ shape, collection, emitter }) => {
          * @return {Selectable}
          */
         constructor() {
-
-            /**
-             * @property selected
-             * @type {Boolean}
-             */
             this.selected = false;
 
             shape.on('click', function onClick() {
+
                 squashEvent(d3.event);
                 this.setState(!this.selected);
+
             }.bind(this));
 
             // Invoked when the user clicks on the canvas to deselect all shapes.
             emitter.on(LN_EVT_DESELECT_ALL, () => this.setState(false));
-
         }
 
         /**
