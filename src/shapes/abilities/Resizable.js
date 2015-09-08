@@ -1,16 +1,22 @@
 import {LN_EVT_RESIZABLE_CREATE, LN_EVT_RESIZABLE_DESTROY} from './../Events';
 
 /**
- * @constant handleRadius
- * @type {Number}
- */
-const handleRadius = 18;
-
-/**
  * @constant edges
  * @type {Map}
  */
 const edges = new Map();
+
+/**
+ * @constant handleRadius
+ * @type {Number}
+ */
+export const handleRadius = 18;
+
+/**
+ * @constant handleImage
+ * @type {String}
+ */
+const handleImage = 'images/handle-main.png';
 
 /**
  * @module Lenin
@@ -18,7 +24,7 @@ const edges = new Map();
  * @author Adam Timberlake
  * @link https://github.com/Wildhoney/Lenin
  */
-export default ({ shape, groups, collection, emitter }) => {
+export default ({ shape, groups, emitter }) => {
 
     return new class Resizable {
 
@@ -61,14 +67,17 @@ export default ({ shape, groups, collection, emitter }) => {
 
                 const edge   = edgeMap[key];
                 const handle = groups.meta.append('image')
-                                          .attr('xlink:href', 'images/handle-main.png')
+                                          .attr('xlink:href', handleImage)
                                           .attr('x', edge.x - (handleRadius / 2))
                                           .attr('y', edge.y - (handleRadius / 2))
-                                          .attr('stroke', 'red')
-                                          .attr('stroke-width', 3)
                                           .attr('width', handleRadius)
                                           .attr('height', handleRadius)
-                                          .on('click', () => d3.event.stopPropagation());
+                                          .classed('handle', true)
+                                          .on('click', () => d3.event.stopPropagation())
+                                          .call(d3.behavior.drag()
+                                              .on('dragstart', () => {})
+                                              .on('drag', () => {})
+                                              .on('dragend', () => {}));
 
                 edges.set(key, handle);
 

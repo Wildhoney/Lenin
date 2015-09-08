@@ -7,7 +7,7 @@ import {LN_EVT_RESIZABLE_CREATE, LN_EVT_RESIZABLE_DESTROY, LN_EVT_DESELECT_ALL} 
  * @author Adam Timberlake
  * @link https://github.com/Wildhoney/Lenin
  */
-export default ({ shape, group, collection, emitter, canvas }) => {
+export default ({ shape, collection, emitter }) => {
 
     return new class Selectable {
 
